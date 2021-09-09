@@ -1,8 +1,23 @@
+# remove files by placing them in trash folder
+alias tcn='mv --force -t ~/.local/share/Trash '
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias lt='ls --human-readable --size -1 -S --classify'
+
+# cd then ls
+function cl() {
+    DIR="$*";
+        # if no DIR given, go home
+        if [ $# -lt 1 ]; then
+                DIR=$HOME;
+    fi;
+    builtin cd "${DIR}" && \
+    # use your preferred ls command
+        ls -F --color=auto
+}
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -20,3 +35,6 @@ alias count='find . -type f | wc -l'
 # create and activate python virtual environment
 alias ve='python3 -m venv ./venv'
 alias va='source ./venv/bin/activate'
+
+# copy dotfiles to repository
+alias cpdotfiles='cp -rf ~/{.bashrc,.zshrc,.bashrc_aliases} repositories/dotfiles'
